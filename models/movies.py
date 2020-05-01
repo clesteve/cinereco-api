@@ -16,7 +16,7 @@ w = np.load("data/gensim_model.npy")
 movie_embedding_size = w.shape[1]
 
 
-def getAll(nb=3, page=0, idlist=None, moviefilter=None):
+def getAll(nb=8, page=0, idlist=None, moviefilter=None):
     if not idlist and not moviefilter:
         movies = df_movies.sort_values(
             by="count", ascending=False).iloc[page*nb: (page + 1)*nb].to_dict(orient="records")
