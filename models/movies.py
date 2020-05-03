@@ -16,7 +16,7 @@ w = np.load("data/gensim_model.npy")
 movie_embedding_size = w.shape[1]
 
 
-def getAll(nb=8, page=0, idlist=None, moviefilter=None):
+def getAll(nb=11, page=0, idlist=None, moviefilter=None):
     if not idlist and not moviefilter:
         movies = df_movies.sort_values(
             by="count", ascending=False).iloc[page*nb: (page + 1)*nb].to_dict(orient="records")
@@ -73,7 +73,7 @@ def getRecos(liked, disliked, watched, threshold=1000):
     )
 
     idlist = [int(x[0])
-              for x in kv.most_similar(positive=liked, negative=disliked, restrict_vocab=4000)]
+              for x in kv.most_similar(positive=liked, negative=disliked, restrict_vocab=4000, topn=12)]
 
     return getAll(idlist=idlist)
 
